@@ -1,4 +1,5 @@
 import numpy as np
+import operator
 """
 Credits: the original code belongs to Stanford CS231n course assignment1. Source link: http://cs231n.github.io/assignments2019/assignment1/
 """
@@ -177,8 +178,7 @@ class KNearestNeighbor:
                 mp[j] += 1
               else:
                 mp[j] = 0
-            #y_pred[i] = max(mp, key=mp.get)
-            y_pred[i] = min(mp, key=mp.get)
+            y_pred[i] = max(mp, key=mp.get)
             # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
 
         return y_pred
