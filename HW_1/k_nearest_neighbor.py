@@ -127,9 +127,9 @@ class KNearestNeighbor:
         #       and two broadcast sums.                                         #
         #########################################################################
         # *****START OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
-        dists = np.sqrt(np.multiply(np.dot(X, self.X_train.T), -2)
-                      + np.sum(pow(self.X_train, 2), axis=1)
-                      + np.sum(pow(X, 2), axis=1)[:, np.newaxis])
+        bsum1 = np.sum(pow(self.X_train, 2), axis=1)
+        bsum2 = np.sum(pow(X, 2), axis=1)[:, np.newaxis]
+        dists = np.sqrt(np.multiply(np.dot(X, self.X_train.T), -2) + bsum1 + bsum2)
         # *****END OF YOUR CODE (DO NOT DELETE/MODIFY THIS LINE)*****
         return dists
 
