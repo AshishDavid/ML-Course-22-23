@@ -1,5 +1,4 @@
 import numpy as np
-import operator
 """
 Credits: the original code belongs to Stanford CS231n course assignment1. Source link: http://cs231n.github.io/assignments2019/assignment1/
 """
