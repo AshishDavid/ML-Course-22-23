@@ -85,11 +85,7 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        if len(w.shape) > 1 :
-           target_dimentionality = w.shape[1]
-        else:
-           target_dimentionality = 1
-        return 2*(np.transpose(X).dot(X.dot(w) - Y)) / Y.size
+        return (2/(Y.shape[1] * Y.shape[0])*(np.transpose(X).dot(X.dot(w) - Y)))
 
     @staticmethod
     def mae_derivative(X, Y, w):
@@ -108,7 +104,7 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
-        return np.transpose(X).dot(np.sign(X.dot(w) - Y)) / Y.size
+        return np.transpose(X).dot((1/(Y.shape[0] * Y.shape[1])*np.sign(X.dot(w) - Y)))
 
     @staticmethod
     def l2_reg_derivative(w):
