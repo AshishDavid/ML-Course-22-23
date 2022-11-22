@@ -85,6 +85,10 @@ class LossAndDerivatives:
         """
 
         # YOUR CODE HERE
+        if len(w.shape) > 1 :
+           target_dimentionality = w.shape[1]
+        else:
+           target_dimentionality = 1
         return 2*(np.transpose(X).dot(X.dot(w) - Y)) / Y.size
 
     @staticmethod
