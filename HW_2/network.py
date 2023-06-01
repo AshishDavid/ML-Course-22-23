@@ -8,18 +8,18 @@ import torch.nn.functional as F
 import tqdm
 
 class ThreeInputsNet(nn.Module):
-    def __init__(self, num_tokens, num_cat_features, concat_features, hidden_size=64):
+    def __init__(self, n_tokens, n_cat_features, concat_number_of_features, hidden_size=64):
         super(ThreeInputsNet, self).__init__()
-        self.title_embedding = nn.Embedding(num_tokens, embedding_dim=hidden_size)
+        self.title_embedding = nn.Embedding(n_tokens, embedding_dim=hidden_size)
         self.title_conv_layer = nn.Conv1d(hidden_size, hidden_size, kernel_size=3, padding=1)
 
-        self.full_embedding = nn.Embedding(num_embeddings=num_tokens, embedding_dim=hidden_size)
+        self.full_embedding = nn.Embedding(num_embeddings=n_tokens, embedding_dim=hidden_size)
         self.full_conv_layer = nn.Conv1d(hidden_size, hidden_size, kernel_size=3, padding=1)
 
-        self.cat_embedding = nn.Embedding(num_cat_features, embedding_dim=hidden_size)
-        self.cat_output_layer = nn.Linear(num_cat_features * hidden_size, hidden_size)
+        self.cat_embedding = nn.Embedding(n_cat_features, embedding_dim=hidden_size)
+        self.cat_output_layer = nn.Linear(n_cat_features * hidden_size, hidden_size)
 
-        self.intermediate_layer = nn.Linear(in_features=concat_features, out_features=hidden_size * 2)
+        self.intermediate_layer = nn.Linear(in_features=concat_number_of_features, out_features=hidden_size * 2)
         self.additional_layer1 = nn.Linear(in_features=hidden_size * 2, out_features=hidden_size)
         self.additional_layer2 = nn.Linear(in_features=hidden_size, out_features=hidden_size)
         self.output_layer = nn.Linear(in_features=hidden_size, out_features=1)
